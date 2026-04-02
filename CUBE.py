@@ -6,7 +6,7 @@ class Cube:
     def __init__(self):
         pass
 
-    cube = np.empty((3,3,3),dtype=object)
+    cube = np.empty((3, 3, 3), dtype=object)
 
     #Cube erstellen 1.Farbe = rechts, 2. vorne, 3. links, 4. hinten, 5. unten 6. oben, X = DefaultFarbe
     # white side
@@ -382,14 +382,11 @@ class Cube:
 def main():
     cube = Cube()
     for i in range(6):
-      cube.rotateRightBackwards()
-      cube.rotateTopLeft()
       cube.rotateRightForwards()
-      cube.rotateTopRight()
-    for i in range(3):
-        for r in range(3):
-            for z in range(3):
-                print(cube.cube[i,r,z])
+      cube.rotateBottomRight()
+      cube.rotateRightBackwards()
+      cube.rotateBottomLeft()
+
 
     t = True
     cube2 = Cube()
