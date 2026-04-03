@@ -110,7 +110,7 @@ class Cube:
         cube[2,1,2][3] = oldcube[2,2,1][5]
         cube[2,1,2][5] = oldcube[2,2,1][3]
 
-        cube[2,0,0] = deepcopy(oldcube[2,0,1])
+        cube[2,0,0] = deepcopy(oldcube[2,0,2])
         cube[2,0,0][1] = oldcube[2,0,2][4]
         cube[2,0,0][4] = oldcube[2,0,2][3]
         cube[2,0,0][3] = oldcube[2,0,2][1]
@@ -377,6 +377,8 @@ class Cube:
         cube[2,0,0][2] = oldcube[2,0,2][3]
         cube[2,0,0][3] = oldcube[2,0,2][1]
         self.cube = cube
+
+
 
 
 def main():
