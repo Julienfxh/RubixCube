@@ -150,7 +150,14 @@ def key_input(evt):
         cube.rotateBottomRight()
     if evt.key == "f":
         cube.rotateRightForwards()
-
+    if evt.key == "x":
+        cube.rotateFrontRight()
+    if evt.key == "y":
+        cube.rotateFrontLeft()
+    if evt.key == "c":
+        cube.rotateBackLeft()
+    if evt.key == "v":
+        cube.rotateBackRight()
     update_colors()
 
 

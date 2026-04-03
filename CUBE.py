@@ -378,6 +378,174 @@ class Cube:
         cube[2,0,0][3] = oldcube[2,0,2][1]
         self.cube = cube
 
+    #right roatation at the front from the cube
+    def rotateFrontRight(self):
+        oldcube = deepcopy(self.cube)
+        cube = deepcopy(self.cube)
+
+        cube[0,2,0] = deepcopy(oldcube[0,0,0])
+        cube[0,2,0][0] = oldcube[0,0,0][4]
+        cube[0,2,0][4] = oldcube[0,0,0][5]
+        cube[0,2,0][5] = oldcube[0,0,0][0]
+
+        cube[0,1,0] = deepcopy(oldcube[1,0,0])
+        cube[0,1,0][0] = oldcube[1,0,0][4]
+        cube[0,1,0][4] = oldcube[1,0,0][0]
+
+        cube[0,0,0] = deepcopy(oldcube[2,0,0])
+        cube[0,0,0][0] = oldcube[2,0,0][4]
+        cube[0,0,0][2] = oldcube[2,0,0][0]
+        cube[0,0,0][4] = oldcube[2,0,0][2]
+
+        cube[1,2,0] = deepcopy(oldcube[0,1,0])
+        cube[1,2,0][0] = oldcube[0,1,0][5]
+        cube[1,2,0][5] = oldcube[0,1,0][0]
+
+        cube[1,0,0] = deepcopy(oldcube[2,1,0])
+        cube[1,0,0][2] = oldcube[2,1,0][4]
+        cube[1,0,0][4] = oldcube[2,1,0][2]
+
+        cube[2,2,0] = deepcopy(oldcube[0,2,0])
+        cube[2,2,0][0] = oldcube[0,2,0][2]
+        cube[2,2,0][2] = oldcube[0,2,0][5]
+        cube[2,2,0][5] = oldcube[0,2,0][0]
+
+        cube[2,1,0] = deepcopy(oldcube[1,2,0])
+        cube[2,1,0][2] = oldcube[1,2,0][5]
+        cube[2,1,0][5] = oldcube[1,2,0][2]
+
+        cube[2,0,0] = deepcopy(oldcube[2,2,0])
+        cube[2,0,0][2] = oldcube[2,2,0][5]
+        cube[2,0,0][4] = oldcube[2,2,0][2]
+        cube[2,0,0][5] = oldcube[2,2,0][4]
+        self.cube = cube
+
+    #left rotation at the front of the cube
+    def rotateFrontLeft(self):
+        oldcube = deepcopy(self.cube)
+        cube = deepcopy(self.cube)
+
+        cube[2,0,0] = deepcopy(oldcube[0,0,0])
+        cube[2,0,0][0] = oldcube[0,0,0][2]
+        cube[2,0,0][2] = oldcube[0,0,0][4]
+        cube[2,0,0][4] = oldcube[0,0,0][0]
+
+        cube[2,1,0] = deepcopy(oldcube[1,0,0])
+        cube[2,1,0][2] = oldcube[1,0,0][4]
+        cube[2,1,0][4] = oldcube[1,0,0][2]
+
+        cube[2,2,0] = deepcopy(oldcube[2,0,0])
+        cube[2,2,0][2] = oldcube[2,0,0][4]
+        cube[2,2,0][4] = oldcube[2,0,0][5]
+        cube[2,2,0][5] = oldcube[2,0,0][2]
+
+        cube[1,0,0] = deepcopy(oldcube[0,1,0])
+        cube[1,0,0][0] = oldcube[0,1,0][4]
+        cube[1,0,0][4] = oldcube[0,1,0][0]
+
+        cube[1,2,0] = deepcopy(oldcube[2,1,0])
+        cube[1,2,0][2] = oldcube[2,1,0][5]
+        cube[1,2,0][5] = oldcube[2,1,0][2]
+
+        cube[0,0,0] = deepcopy(oldcube[0,2,0])
+        cube[0,0,0][0] = oldcube[0,2,0][5]
+        cube[0,0,0][4] = oldcube[0,2,0][0]
+        cube[0,0,0][5] = oldcube[0,2,0][4]
+
+        cube[0,1,0] = deepcopy(oldcube[1,2,0])
+        cube[0,1,0][0] = oldcube[1,2,0][5]
+        cube[0,1,0][5] = oldcube[1,2,0][0]
+
+        cube[0,2,0] = deepcopy(oldcube[2,2,0])
+        cube[0,2,0][0] = oldcube[2,2,0][5]
+        cube[0,2,0][2] = oldcube[2,2,0][0]
+        cube[0,2,0][5] = oldcube[2,2,0][2]
+        self.cube = cube
+
+
+    #right rotation at the back of the cube
+    def rotateBackRight(self):
+        oldcube = deepcopy(self.cube)
+        cube = deepcopy(self.cube)
+
+        cube[0,2,2] = deepcopy(oldcube[0,0,2])
+        cube[0,2,2][0] = oldcube[0,0,2][4]
+        cube[0,2,2][4] = oldcube[0,0,2][5]
+        cube[0,2,2][5] = oldcube[0,0,2][0]
+
+        cube[0,1,2] = deepcopy(oldcube[1,0,2])
+        cube[0,1,2][0] = oldcube[1,0,2][4]
+        cube[0,1,2][4] = oldcube[1,0,2][0]
+
+        cube[0,0,2] = deepcopy(oldcube[2,0,2])
+        cube[0,0,2][0] = oldcube[2,0,2][4]
+        cube[0,0,2][2] = oldcube[2,0,2][0]
+        cube[0,0,2][4] = oldcube[2,0,2][2]
+
+        cube[1,2,2] = deepcopy(oldcube[0,1,2])
+        cube[1,2,2][0] = oldcube[0,1,2][5]
+        cube[1,2,2][5] = oldcube[0,1,2][0]
+
+        cube[1,0,2] = deepcopy(oldcube[2,1,2])
+        cube[1,0,2][2] = oldcube[2,1,2][4]
+        cube[1,0,2][4] = oldcube[2,1,2][2]
+
+        cube[2,2,2] = deepcopy(oldcube[0,2,2])
+        cube[2,2,2][0] = oldcube[0,2,2][2]
+        cube[2,2,2][2] = oldcube[0,2,2][5]
+        cube[2,2,2][5] = oldcube[0,2,2][0]
+
+        cube[2,1,2] = deepcopy(oldcube[1,2,2])
+        cube[2,1,2][2] = oldcube[1,2,2][5]
+        cube[2,1,2][5] = oldcube[1,2,2][2]
+
+        cube[2,0,2] = deepcopy(oldcube[2,2,2])
+        cube[2,0,2][2] = oldcube[2,2,2][5]
+        cube[2,0,2][4] = oldcube[2,2,2][2]
+        cube[2,0,2][5] = oldcube[2,2,2][4]
+        self.cube = cube
+
+    #left rotation at the back of the cube
+    def rotateBackLeft(self):
+        oldcube = deepcopy(self.cube)
+        cube = deepcopy(self.cube)
+
+        cube[2,0,2] = deepcopy(oldcube[0,0,2])
+        cube[2,0,2][0] = oldcube[0,0,2][2]
+        cube[2,0,2][2] = oldcube[0,0,2][4]
+        cube[2,0,2][4] = oldcube[0,0,2][0]
+
+        cube[2,1,2] = deepcopy(oldcube[1,0,2])
+        cube[2,1,2][2] = oldcube[1,0,2][4]
+        cube[2,1,2][4] = oldcube[1,0,2][2]
+
+        cube[2,2,2] = deepcopy(oldcube[2,0,2])
+        cube[2,2,2][2] = oldcube[2,0,2][4]
+        cube[2,2,2][4] = oldcube[2,0,2][5]
+        cube[2,2,2][5] = oldcube[2,0,2][2]
+
+        cube[1,0,2] = deepcopy(oldcube[0,1,2])
+        cube[1,0,2][0] = oldcube[0,1,2][4]
+        cube[1,0,2][4] = oldcube[0,1,2][0]
+
+        cube[1,2,2] = deepcopy(oldcube[2,1,2])
+        cube[1,2,2][2] = oldcube[2,1,2][5]
+        cube[1,2,2][5] = oldcube[2,1,2][2]
+
+        cube[0,0,2] = deepcopy(oldcube[0,2,2])
+        cube[0,0,2][0] = oldcube[0,2,2][5]
+        cube[0,0,2][4] = oldcube[0,2,2][0]
+        cube[0,0,2][5] = oldcube[0,2,2][4]
+
+        cube[0,1,2] = deepcopy(oldcube[1,2,2])
+        cube[0,1,2][0] = oldcube[1,2,2][5]
+        cube[0,1,2][5] = oldcube[1,2,2][0]
+
+        cube[0,2,2] = deepcopy(oldcube[2,2,2])
+        cube[0,2,2][0] = oldcube[2,2,2][5]
+        cube[0,2,2][2] = oldcube[2,2,2][0]
+        cube[0,2,2][5] = oldcube[2,2,2][2]
+        self.cube = cube
 
 
 
