@@ -158,6 +158,8 @@ def key_input(evt):
         cube.rotateBackLeft()
     if evt.key == "v":
         cube.rotateBackRight()
+    if evt.key == "o":
+        cube.solveWithHistory()
     update_colors()
 
 

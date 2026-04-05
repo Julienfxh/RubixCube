@@ -6,7 +6,15 @@ class Cube:
     def __init__(self):
         pass
 
+    #in history get the last moves stored
+    # 1 for rotateRightForwards -1 for rotateRightBackwords
+    # 2 for rotateLeftForwards -2 for rotateLeftBackwords
+    # 3 for rotateTopLeft -3 for rotateTopRight
+    # 4 for rotateBottomLeft -4 for rotateBottomRight
+    # 5 for rotateFrontLeft -5 for rotateFrontRight
+    # 6 for rotateBackLeft -6 for rotateBackRight
     cube = np.empty((3, 3, 3), dtype=object)
+    history = []
 
     #Cube erstellen 1.Farbe = rechts, 2. vorne, 3. links, 4. hinten, 5. unten 6. oben, X = DefaultFarbe
     # white side
@@ -82,6 +90,7 @@ class Cube:
         cube[2,2,0][3] = oldcube[2,2,2][1]
         cube[2,2,0][5] = oldcube[2,2,2][3]
         self.cube = cube
+        self.history.append(1)
 
     #backwards rotation at the right side from the cube
     def rotateRightBackwards(self):
@@ -124,6 +133,7 @@ class Cube:
         cube[2,0,2][4] = oldcube[2,2,2][3]
         cube[2,0,2][5] = oldcube[2,2,2][4]
         self.cube = cube
+        self.history.append(-1)
 
 
     #forward rotation at the left side from the cube
@@ -167,6 +177,7 @@ class Cube:
         cube[0,2,1][5] = oldcube[0,1,2][3]
         cube[0,2,1][3] = oldcube[0,1,2][5]
         self.cube = cube
+        self.history.append(2)
 
     #backward rotation at the left side from the cube
     def rotateLeftBackwards(self):
@@ -209,6 +220,7 @@ class Cube:
         cube[0,0,1][4] = oldcube[0,1,2][3]
         cube[0,0,1][3] = oldcube[0,1,2][4]
         self.cube = cube
+        self.history.append(-2)
 
     #right rotation at the top of the cube
     def rotateTopRight(self):
@@ -251,6 +263,7 @@ class Cube:
         cube[0,2,2][2] = oldcube[2,2,2][0]
         cube[0,2,2][3] = oldcube[2,2,2][2]
         self.cube = cube
+        self.history.append(-3)
 
     #left rotation at the top of the cube
     def rotateTopLeft(self):
@@ -293,6 +306,7 @@ class Cube:
         cube[2,2,0][2] = oldcube[2,2,2][3]
         cube[2,2,0][3] = oldcube[2,2,2][1]
         self.cube = cube
+        self.history.append(3)
 
     #right rotation at the bottom from the cube
     def rotateBottomRight(self):
@@ -335,6 +349,7 @@ class Cube:
         cube[0,0,2][2] = oldcube[2,0,2][0]
         cube[0,0,2][3] = oldcube[2,0,2][2]
         self.cube = cube
+        self.history.append(-4)
 
     #left rotation at the bottom of the cube
     def rotateBottomLeft(self):
@@ -377,6 +392,7 @@ class Cube:
         cube[2,0,0][2] = oldcube[2,0,2][3]
         cube[2,0,0][3] = oldcube[2,0,2][1]
         self.cube = cube
+        self.history.append(4)
 
     #right roatation at the front from the cube
     def rotateFrontRight(self):
@@ -419,6 +435,7 @@ class Cube:
         cube[2,0,0][4] = oldcube[2,2,0][2]
         cube[2,0,0][5] = oldcube[2,2,0][4]
         self.cube = cube
+        self.history.append(-5)
 
     #left rotation at the front of the cube
     def rotateFrontLeft(self):
@@ -461,6 +478,7 @@ class Cube:
         cube[0,2,0][2] = oldcube[2,2,0][0]
         cube[0,2,0][5] = oldcube[2,2,0][2]
         self.cube = cube
+        self.history.append(5)
 
 
     #right rotation at the back of the cube
@@ -504,6 +522,7 @@ class Cube:
         cube[2,0,2][4] = oldcube[2,2,2][2]
         cube[2,0,2][5] = oldcube[2,2,2][4]
         self.cube = cube
+        self.history.append(-6)
 
     #left rotation at the back of the cube
     def rotateBackLeft(self):
@@ -546,6 +565,38 @@ class Cube:
         cube[0,2,2][2] = oldcube[2,2,2][0]
         cube[0,2,2][5] = oldcube[2,2,2][2]
         self.cube = cube
+        self.history.append(6)
+
+
+    def solveWithHistory(self):
+        for i in reversed(self.history):
+            if i == 1:
+                self.rotateRightBackwards()
+            if i == -1:
+                self.rotateRightForwards()
+            if i == 2:
+                self.rotateLeftBackwards()
+            if i == -2:
+                self.rotateLeftForwards()
+            if i == 3:
+                self.rotateTopRight()
+            if i == -3:
+                self.rotateTopLeft()
+            if i == 4:
+                self.rotateBottomRight()
+            if i == -4:
+                self.rotateBottomLeft()
+            if i == 5:
+                self.rotateFrontRight()
+            if i == 5:
+                self.rotateFrontLeft()
+            if i == 6:
+                self.rotateBackRight()
+            if i == -6:
+                self.rotateBackLeft()
+            self.history = []
+
+
 
 
 
