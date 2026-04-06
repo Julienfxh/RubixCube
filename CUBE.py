@@ -1,5 +1,5 @@
 from copy import deepcopy
-
+import random
 import numpy as np
 
 class Cube:
@@ -567,59 +567,50 @@ class Cube:
         self.cube = cube
         self.history.append(6)
 
-
-    def solveWithHistory(self):
-        for i in reversed(self.history):
-            if i == 1:
-                self.rotateRightBackwards()
+    def randomMoves(self, x):
+        while x:
+            i = random.randint(-6, 6)
+            while i == 0:
+              i = random.randint(-6, 6)
             if i == -1:
+                self.rotateRightBackwards()
+            if i == 1:
                 self.rotateRightForwards()
-            if i == 2:
-                self.rotateLeftBackwards()
             if i == -2:
+                self.rotateLeftBackwards()
+            if i == 2:
                 self.rotateLeftForwards()
-            if i == 3:
-                self.rotateTopRight()
             if i == -3:
+                self.rotateTopRight()
+            if i == 3:
                 self.rotateTopLeft()
-            if i == 4:
-                self.rotateBottomRight()
             if i == -4:
+                self.rotateBottomRight()
+            if i == 4:
                 self.rotateBottomLeft()
-            if i == 5:
+            if i == -5:
                 self.rotateFrontRight()
             if i == 5:
                 self.rotateFrontLeft()
-            if i == 6:
-                self.rotateBackRight()
             if i == -6:
+                self.rotateBackRight()
+            if i == 6:
                 self.rotateBackLeft()
-            self.history = []
-
-
-
+            x = x-1
 
 
 def main():
     cube = Cube()
-    for i in range(6):
-      cube.rotateRightForwards()
-      cube.rotateBottomRight()
-      cube.rotateRightBackwards()
-      cube.rotateBottomLeft()
-
-
-    t = True
-    cube2 = Cube()
-    for i in range(3):
-        for r in range(3):
-            for z in range(3):
-                if cube.cube[i,r,z]!=cube2.cube[i,r,z]:
-                    t = False
-    print(t)
+    cube.whiteCross()
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
 
 
 
