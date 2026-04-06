@@ -162,6 +162,8 @@ class Visualizer:
             self.solver.solveWithHistory(self)
         if evt.key == "1":
             self.cube.randomMoves(10)
+        if evt.key == "2":
+            self.solver.whiteCross(self)
 
         self.update_colors()
 

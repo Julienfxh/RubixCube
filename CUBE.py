@@ -599,12 +599,7 @@ class Cube:
             x = x-1
 
 
-def main():
-    cube = Cube()
-    cube.whiteCross()
 
-if __name__ == "__main__":
-    main()
 
 
 
