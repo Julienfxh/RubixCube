@@ -163,7 +163,7 @@ class Visualizer:
         if evt.key == "1":
             self.cube.randomMoves(10)
         if evt.key == "2":
-            self.solver.whiteCross(self)
+            self.solver.solve(self)
 
         self.update_colors()
 
