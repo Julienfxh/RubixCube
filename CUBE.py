@@ -6,17 +6,11 @@ class Cube:
     def __init__(self):
         pass
 
-    #in history get the last moves stored
-    # 1 for rotateRightForwards -1 for rotateRightBackwords
-    # 2 for rotateLeftForwards -2 for rotateLeftBackwords
-    # 3 for rotateTopLeft -3 for rotateTopRight
-    # 4 for rotateBottomLeft -4 for rotateBottomRight
-    # 5 for rotateFrontLeft -5 for rotateFrontRight
-    # 6 for rotateBackLeft -6 for rotateBackRight
+
     cube = np.empty((3, 3, 3), dtype=object)
     history = []
 
-    #Cube erstellen 1.Farbe = rechts, 2. vorne, 3. links, 4. hinten, 5. unten 6. oben, X = DefaultFarbe
+    #initalise Cube with  1.Color = Left, 2.Color = Front, 3.Color = Right, 4.Color = Back, 5.Color = Bottom 6.Color = Top, X = Default Color
     # white side
     cube[0,0,0] = ['O','W','X','X','G','X']
     cube[1,0,0] = ['X','W','X','X','G','X']
@@ -50,7 +44,7 @@ class Cube:
     #Blue side
     cube[1,2,1] = ['X','X','X','X','X','B']
 
-    #forward ration at the right side from the Cube
+    #forward rotation at the right side from the Cube
     def rotateRightForwards(self):
         oldcube = deepcopy(self.cube)
         cube = deepcopy(self.cube)
@@ -394,7 +388,7 @@ class Cube:
         self.cube = cube
         self.history.append(4)
 
-    #right roatation at the front from the cube
+    #right rotation at the front from the cube
     def rotateFrontRight(self):
         oldcube = deepcopy(self.cube)
         cube = deepcopy(self.cube)
@@ -567,6 +561,7 @@ class Cube:
         self.cube = cube
         self.history.append(6)
 
+    #to bring the cube in a messy state
     def randomMoves(self, x):
         while x:
             i = random.randint(-6, 6)

@@ -12,7 +12,7 @@ def isYellowL(solver,visualizer=None):
     return False
 
 def isYellowLine(solver,visualizer=None):
-    for i in range(4):
+    for i in range(3):
         if(solver.cube.cube[0,1,2][3]=='Y' and solver.cube.cube[2,1,2][3]=='Y'):
             return True
         solver.do("rotateBackLeft",visualizer)
@@ -27,8 +27,15 @@ def yellowCrossAlgorithm(solver,visualizer=None):
     solver.do("rotateTopRight",visualizer)
 
 def yellowCrossToTheTop(solver,visualizer=None):
-   while isYellowLine(solver,visualizer)==False or isYellowL(solver,visualizer)==False or isYellowCross(solver)==False:
+   while isYellowLine(solver,visualizer)==False:
        yellowCrossAlgorithm(solver,visualizer)
+
+   while isYellowL(solver,visualizer)==False:
+       yellowCrossAlgorithm(solver,visualizer)
+
+   while isYellowCross(solver)==False:
+       yellowCrossAlgorithm(solver,visualizer)
+
 
 def isCorrectBlueGreen(solver,visualizer=None):
     for i in range(4):
@@ -45,9 +52,11 @@ def isCorrectOrangeRed(solver, visualizer=None):
     return False
 
 def isCorrectCross(solver, visualizer=None):
-     if(isCorrectBlueGreen(solver,visualizer) and isCorrectOrangeRed(solver,visualizer)):
+    for i in range(4):
+      if solver.cube.cube[0,1,2][0]== 'O' and solver.cube.cube[2,1,2][2]== 'R' and solver.cube.cube[1,0,2][4]=='G' and solver.cube.cube[1,2,2][5]=='B':
         return True
-     return False
+      solver.do("rotateBackLeft",visualizer)
+    return False
 
 def isCorrectBlueRed(solver, visualizer=None):
     for i in range(4):
@@ -141,12 +150,6 @@ def directTheYellowCross(solver,visualizer=None):
         solver.do("rotateBottomLeft",visualizer)
         isCorrectCross(solver,visualizer)
         return
-
-
-
-
-
-
 
 def yellowCross(solver,visualizer=None):
     yellowCrossToTheTop(solver,visualizer)

@@ -164,7 +164,6 @@ class Visualizer:
             self.cube.randomMoves(10)
         if evt.key == "2":
             self.solver.solve(self)
-
         self.update_colors()
 
     def run(self):

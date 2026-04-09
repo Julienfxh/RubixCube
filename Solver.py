@@ -4,7 +4,7 @@ from solverhelper.WhiteCross import whiteCross
 from solverhelper.WhiteCorners import whiteCorners
 from solverhelper.Middle import middle
 from solverhelper.YellowCross import yellowCross
-
+from solverhelper.YellowCorners import yellowCorners
 
 class Solver:
     def __init__(self, cube):
@@ -15,40 +15,34 @@ class Solver:
         getattr(self.cube, name)()
         if visualizer is not None:
             visualizer.update_colors()
-        time.sleep(0.1)
+        time.sleep(0.05)
 
     #does a specific rotation n times
     def doNTimes(self, name, visualizer=None, n=2):
         for i in range(n):
             self.do(name, visualizer)
 
-    #inverts all moves
-    def solveWithHistory(self, visualizer = None):
-        for i in reversed(self.cube.history):
-            if i == 1:
-                self.do("rotateRightBackwards",visualizer)
-            if i == -1:
-                self.do("rotateRightForwards",visualizer)
-            if i == 2:
-                self.do("rotateLeftBackwards",visualizer)
-            if i == -2:
-                self.do("rotateLeftForwards",visualizer)
-            if i == 3:
-                self.do("rotateTopRight",visualizer)
-            if i == -3:
-                self.do("rotateTopLeft",visualizer)
-            if i == 4:
-                self.do("rotateBottomRight",visualizer)
-            if i == -4:
-                self.do("rotateBottomLeft",visualizer)
-            if i == 5:
-                self.do("rotateFrontRight",visualizer)
-            if i == -5:
-                self.do("rotateFrontLeft",visualizer)
-            if i == 6:
-                self.do("rotateBackRight",visualizer)
-            if i == -6:
-                self.do("rotateBackLeft",visualizer)
+    def solveWithHistory(self, visualizer=None):
+        move_map = {
+            1: "rotateRightBackwards",
+            -1: "rotateRightForwards",
+            2: "rotateLeftBackwards",
+            -2: "rotateLeftForwards",
+            3: "rotateTopRight",
+            -3: "rotateTopLeft",
+            4: "rotateBottomRight",
+            -4: "rotateBottomLeft",
+            5: "rotateFrontRight",
+            -5: "rotateFrontLeft",
+            6: "rotateBackRight",
+            -6: "rotateBackLeft",
+        }
+
+        for move in reversed(self.cube.history):
+          action = move_map.get(move)
+          if action:
+            self.do(action, visualizer)
+
         self.cube.history = []
 
     #checks where the position from a cubie is with only this two visible Colors
@@ -71,9 +65,10 @@ class Solver:
                             return x, y, z
         return None
 
-
+    #function that get called by the visualizer
     def solve(self,visualizer):
         whiteCross(self,visualizer)
         whiteCorners(self,visualizer)
         middle(self,visualizer)
         yellowCross(self,visualizer)
+        yellowCorners(self,visualizer)

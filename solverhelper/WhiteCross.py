@@ -59,6 +59,7 @@ def whiteCrossBlue(solver,visualizer=None):
                     solver.do("rotateBackLeft", visualizer)
                     x,y,z = solver.isSidedCubie(solver.cube, 'W', 'B')
                 solver.doNTimes("rotateTopLeft", visualizer)
+                x,y,z = solver.isSidedCubie(solver.cube, 'W', 'B')
         #When the White-Blue Cubie is at the Back from the Cube
         case (_,_,2):
             while(x!=1 or y!=2):
