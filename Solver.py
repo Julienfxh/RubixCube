@@ -3,6 +3,8 @@ import numpy as np
 from solverhelper.WhiteCross import whiteCross
 from solverhelper.WhiteCorners import whiteCorners
 from solverhelper.Middle import middle
+from solverhelper.YellowCross import yellowCross
+
 
 class Solver:
     def __init__(self, cube):
@@ -74,4 +76,4 @@ class Solver:
         whiteCross(self,visualizer)
         whiteCorners(self,visualizer)
         middle(self,visualizer)
-
+        yellowCross(self,visualizer)

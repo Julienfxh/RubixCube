@@ -159,30 +159,30 @@ def middleBottomLeft(solver,visulaizer=None):
         solver.do("rotateBackRight",visulaizer)
         middleAlgorithm(3,solver,visulaizer)
 
-def middleBottomRight(solver,visulaizer=None):
+def middleBottomRight(solver,visualaizer=None):
     x,y,z = solver.isSidedCubie(solver.cube,'G','R')
 
-    if(solver.cube.cube[x,y,z][4]=='G' and x==2 and y==0 and z ==1):
+    if solver.cube.cube[x,y,z][4]== 'G' and x==2 and y==0 and z ==1:
         return
 
-    bringItOutTheMiddle(x,y,z,solver,visulaizer)
+    bringItOutTheMiddle(x, y, z, solver, visualaizer)
     x,y,z = solver.isSidedCubie(solver.cube,'G','R')
 
     while(y!=0):
-        solver.do("rotateBackLeft",visulaizer)
+        solver.do("rotateBackLeft", visualaizer)
         x,y,z = solver.isSidedCubie(solver.cube,'G','R')
 
     if(solver.cube.cube[1,0,2][4]=='G'):
-        middleAlgorithm(8,solver,visulaizer)
+        middleAlgorithm(8, solver, visualaizer)
     else:
-        solver.do("rotateBackLeft",visulaizer)
-        middleAlgorithm(6,solver,visulaizer)
+        solver.do("rotateBackLeft", visualaizer)
+        middleAlgorithm(6, solver, visualaizer)
 
 
 def middle(solver,visualizer=None):
     middleTopLeft(solver,visualizer)
     middleTopRight(solver,visualizer)
     middleBottomLeft(solver,visualizer)
-    middleBottomRight(solver,visualizer)
+    middleBottomRight(solver, visualizer)
 
 
