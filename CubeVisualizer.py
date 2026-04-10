@@ -6,7 +6,7 @@ class Visualizer:
         self.cube = cube
         self.solver = solver
 
-        scene.title = "Rubik Cube Test"
+        scene.title = "Rubik Cube Solver"
         scene.width = 900
         scene.height = 700
         scene.background = color.gray(0.15)
@@ -35,6 +35,7 @@ class Visualizer:
 
         self.cubies = []
         self.create_all_cubies()
+        self.create_ui()
 
     def get_color(self, letter):
         return self.COLOR_MAP.get(letter.upper(), self.BLACK)
@@ -109,62 +110,111 @@ class Visualizer:
 
     def update_colors(self):
         for cubie in self.cubies:
-            x = cubie["grid_pos"][0]
-            y = cubie["grid_pos"][1]
-            z = cubie["grid_pos"][2]
+            x, y, z = cubie["grid_pos"]
 
             if y == 1:
                 cubie["stickers"][5].color = self.get_color(self.cube.cube[x + 1, y + 1, z + 1][5])
-
             if y == -1:
                 cubie["stickers"][4].color = self.get_color(self.cube.cube[x + 1, y + 1, z + 1][4])
-
             if z == 1:
                 cubie["stickers"][3].color = self.get_color(self.cube.cube[x + 1, y + 1, z + 1][3])
-
             if z == -1:
                 cubie["stickers"][1].color = self.get_color(self.cube.cube[x + 1, y + 1, z + 1][1])
-
             if x == 1:
                 cubie["stickers"][2].color = self.get_color(self.cube.cube[x + 1, y + 1, z + 1][2])
-
             if x == -1:
                 cubie["stickers"][0].color = self.get_color(self.cube.cube[x + 1, y + 1, z + 1][0])
 
-    def key_input(self, evt):
-        print("Taste:", evt.key)
+    def create_ui(self):
+        scene.append_to_caption("\nControl")
+        scene.append_to_caption(" " * 40)
+        scene.append_to_caption("Keybinding\n\n")
 
-        if evt.key == "q":
+        button(text="Q", bind=lambda _: self.do_action("q"))
+        scene.append_to_caption(" ")
+        button(text="W", bind=lambda _: self.do_action("w"))
+        scene.append_to_caption(" ")
+        button(text="E", bind=lambda _: self.do_action("e"))
+        scene.append_to_caption(" ")
+        button(text="R", bind=lambda _: self.do_action("r"))
+        scene.append_to_caption(" " * 20 + "Q/A = Left\n")
+
+        button(text="A", bind=lambda _: self.do_action("a"))
+        scene.append_to_caption(" ")
+        button(text="S", bind=lambda _: self.do_action("s"))
+        scene.append_to_caption(" ")
+        button(text="D", bind=lambda _: self.do_action("d"))
+        scene.append_to_caption(" ")
+        button(text="F", bind=lambda _: self.do_action("f"))
+        scene.append_to_caption(" " * 20 + "W/E = Top\n")
+
+        button(text="X", bind=lambda _: self.do_action("x"))
+        scene.append_to_caption(" ")
+        button(text="Y", bind=lambda _: self.do_action("y"))
+        scene.append_to_caption(" ")
+        button(text="C", bind=lambda _: self.do_action("c"))
+        scene.append_to_caption(" ")
+        button(text="V", bind=lambda _: self.do_action("v"))
+        scene.append_to_caption(" " * 20 + "S/D = Bottom\n\n")
+
+        button(text="Solve with History", bind=lambda _: self.do_action("o"))
+        scene.append_to_caption(" ")
+        button(text="Solve", bind=lambda _: self.do_action("2"))
+        scene.append_to_caption(" " * 10 + "R/F = Right\n\n")
+
+        scene.append_to_caption("Random Moves ")
+        button(text="10", bind=lambda _: self.random_moves(10))
+        scene.append_to_caption(" ")
+        button(text="100", bind=lambda _: self.random_moves(100))
+        scene.append_to_caption(" ")
+        button(text="1000", bind=lambda _: self.random_moves(1000))
+        scene.append_to_caption(" " * 5 + "X/Y = Front\n")
+
+        scene.append_to_caption(" " * 45 + "C/V = Back\n")
+        scene.append_to_caption(" " * 45 + "O = Solve with History\n")
+        scene.append_to_caption(" " * 45 + "1 = Random | 2 = Solve\n\n")
+
+
+    def do_action(self, key):
+        if key == "q":
             self.cube.rotateLeftBackwards()
-        if evt.key == "w":
+        elif key == "w":
             self.cube.rotateTopLeft()
-        if evt.key == "e":
+        elif key == "e":
             self.cube.rotateTopRight()
-        if evt.key == "r":
+        elif key == "r":
             self.cube.rotateRightBackwards()
-        if evt.key == "a":
+        elif key == "a":
             self.cube.rotateLeftForwards()
-        if evt.key == "s":
+        elif key == "s":
             self.cube.rotateBottomLeft()
-        if evt.key == "d":
+        elif key == "d":
             self.cube.rotateBottomRight()
-        if evt.key == "f":
+        elif key == "f":
             self.cube.rotateRightForwards()
-        if evt.key == "x":
+        elif key == "x":
             self.cube.rotateFrontRight()
-        if evt.key == "y":
+        elif key == "y":
             self.cube.rotateFrontLeft()
-        if evt.key == "c":
+        elif key == "c":
             self.cube.rotateBackLeft()
-        if evt.key == "v":
+        elif key == "v":
             self.cube.rotateBackRight()
-        if evt.key == "o":
+        elif key == "o":
             self.solver.solveWithHistory(self)
-        if evt.key == "1":
+        elif key == "1":
             self.cube.randomMoves(10)
-        if evt.key == "2":
+        elif key == "2":
             self.solver.solve(self)
+
         self.update_colors()
+
+    def random_moves(self, amount):
+        self.cube.randomMoves(amount)
+        self.update_colors()
+
+    def key_input(self, evt):
+        self.do_action(evt.key.lower())
 
     def run(self):
         scene.bind("keydown", self.key_input)
